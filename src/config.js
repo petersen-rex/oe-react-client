@@ -35,7 +35,7 @@ const dev = {
 //Default to dev if not set
 const config = process.env.REACT_APP_STAGE === 'prod'
   ? prod
-  : prod;
+  : dev;
 
 export default {
 	  MAX_ATTACHMENT_SIZE: 5000000,
