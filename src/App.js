@@ -52,7 +52,7 @@ class App extends Component {
 		      <Navbar fluid collapseOnSelect>
 		        <Navbar.Header>
 		          <Navbar.Brand>
-		            <Link to="/">Scratch</Link>
+		            <Link to="/">oeDXP</Link>
 		          </Navbar.Brand>
 		          <Navbar.Toggle />
 		        </Navbar.Header>
