@@ -12,7 +12,7 @@ import Signup from "./containers/Signup";
 import NewNote from "./containers/NewNote";
 import Notes from "./containers/Notes";
 import Settings from "./containers/Settings";
-
+import Contacts from "./containers/Contacts";
 
 
 
@@ -24,6 +24,7 @@ export default ({ childProps }) =>
     <AuthenticatedRoute path="/settings" exact component={Settings} props={childProps} />
     <AuthenticatedRoute path="/notes/new" exact component={NewNote} props={childProps} />
     <AuthenticatedRoute path="/notes/:id" exact component={Notes} props={childProps} />
+    <AuthenticatedRoute path="/contacts/:id" exact component={Contacts} props={childProps} />
     { /* Finally, catch all unmatched routes */ }
     <Route component={NotFound} />
   </Switch>;

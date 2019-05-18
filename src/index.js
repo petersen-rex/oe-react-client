@@ -26,7 +26,12 @@ Amplify.configure({
 	        name: "notes",
 	        endpoint: config.apiGateway.URL,
 	        region: config.apiGateway.REGION
-	      },
+          },
+          {
+            name: "salesforce",
+            endpoint: "https://x0xnqz1qq5.execute-api.us-east-1.amazonaws.com/dev",
+            region: config.apiGateway.REGION
+          },
 	    ]
 	  }
 	});

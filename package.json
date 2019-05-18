@@ -4,6 +4,8 @@
   "private": true,
   "dependencies": {
     "aws-amplify": "^1.1.23",
+    "debug": "^4.1.1",
+    "nforce": "^1.12.2",
     "react": "^16.8.6",
     "react-bootstrap": "^0.32.4",
     "react-dom": "^16.8.6",
@@ -19,6 +21,7 @@
     "deploy": "aws s3 sync build/ s3://oe-serverless-react-demo-code --delete",
     "postdeploy": "aws cloudfront create-invalidation --distribution-id E271GB9E45E0N4 --paths '/*' && aws cloudfront create-invalidation --distribution-id E2X4SO9TIOA9O6 --paths '/*'",
     "test": "react-scripts test",
+    "debug": "react-scripts start --inspect --debug-brk",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {

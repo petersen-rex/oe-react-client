@@ -12,7 +12,9 @@ export default class Home extends Component {
 
     this.state = {
       isLoading: true,
-      notes: []
+      notes: [],
+      records: [],
+      message: {}
     };
   }
   async componentDidMount() {
@@ -22,7 +24,12 @@ export default class Home extends Component {
 
 	  try {
 	    const notes = await this.notes();
-	    this.setState({ notes });
+        this.setState({ notes });
+        //const message = await this.message();
+        //this.setState({message});
+        const records = (await this.salesForce()).records;
+        console.log("Contacts: " + JSON.stringify(records));
+        this.setState({records});
 	  } catch (e) {
 	    alert(e);
 	  }
@@ -33,9 +40,15 @@ export default class Home extends Component {
 	notes() {
 	  return API.get("notes", "/notes");
 	}
+    message(){
+        return API.get("notes", "/message");
+    }
+    salesForce(){
+        return API.get("salesforce", "/contacts");
+    }
 
-	renderNotesList(notes) {
-		  return [{}].concat(notes).map(
+    renderNotesList(notes) {  
+        return [{}].concat(notes).map(
 		    (note, i) =>
 		      i !== 0
 		        ? <LinkContainer
@@ -52,14 +65,40 @@ export default class Home extends Component {
 		          >
 		            <ListGroupItem>
 		              <h4>
-		                <b>{"\uFF0B"}</b> Create a new note
+		                <b>{"\uFF0B"}</b> New Note
 		              </h4>
 		            </ListGroupItem>
 		          </LinkContainer>
 		  );
 		}
 
-  renderLander() {
+    renderContactsList(contacts) {  
+        return [{}].concat(contacts).map(
+		    (contact, i) =>
+		      i !== 0
+		        ? <LinkContainer
+		            key={contact.id}
+		            to={`/contacts/${contact.id}`}
+		          >
+		            <ListGroupItem header={contact.firstname+" "+contact.lastname}>
+		              {contact.account.Name}<br/>
+                      {contact.phone + " " + contact.email}
+		            </ListGroupItem>
+		          </LinkContainer>
+		        : <LinkContainer
+		            key="new"
+		            to="/contacts/new"
+		          >
+		            <ListGroupItem>
+		              <h4>
+		                <b>{"\uFF0B"}</b> New Contact
+		              </h4>
+		            </ListGroupItem>
+		          </LinkContainer>
+		  );
+		}
+
+    renderLander() {
     return (
       <div className="lander">
         <h1>oeDXP</h1>
@@ -75,9 +114,12 @@ export default class Home extends Component {
   renderNotes() {
     return (
       <div className="notes">
-        <PageHeader>Your Notes</PageHeader>
+        <PageHeader>Notes </PageHeader>
         <ListGroup>
           {!this.state.isLoading && this.renderNotesList(this.state.notes)}
+        </ListGroup>
+        <ListGroup>
+            {!this.state.isLoading && this.renderContactsList(this.state.records)}
         </ListGroup>
       </div>
     );

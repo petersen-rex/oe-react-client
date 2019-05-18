@@ -1,0 +1,12 @@
+npx aws-api-gateway-cli-test \
+--username='rex@openelastic.com' \
+--password='Aygi1969!' \
+--user-pool-id='us-east-1_FiFXEDDxh' \
+--app-client-id='68l6ufmr6evmeegt6a64p004tk' \
+--cognito-region='us-east-1' \
+--identity-pool-id='us-east-1:9603adbb-5f16-4234-9fec-3602d2951a2b' \
+--invoke-url='https://api.openelastic.org/dev' \
+--api-gateway-region='us-east-1' \
+--path-template='/notes' \
+--method='GET' \
+--body='{}'
